@@ -4,7 +4,7 @@
             <input type="text" @click="show" v-model="date" readonly="readonly">
         </div>
         <div v-if="showDatePicker">
-            <DatePicker @cancle="cancle" @sure="sure"></DatePicker>
+            <DatePicker @cancle="cancle" @sure="sure" :selecteddate="olddate"></DatePicker>
         </div>
     </div>
 </template>
@@ -12,11 +12,12 @@
 <script>
 import DatePicker from './components/DatePicker.vue'
 export default {
-    name: 'date-picker',
+    name: 'app',
     data () {
         return {
             showDatePicker:false,
-            date:""
+            date:"",
+            olddate:null
         }
     },
     methods:{
@@ -27,6 +28,7 @@ export default {
             this.showDatePicker = false;
         },
         sure (date) {
+            this.olddate = date;
             this.showDatePicker = false;
             this.date = this.formatDate (date);
 
@@ -53,7 +55,7 @@ export default {
 }
 input{
     text-align: center;
-    width:100px;
+    width:120px;
     height:30px;
     outline:none;
     border:2px solid #afe;
