@@ -4,13 +4,16 @@
             <input type="text" @click="show" v-model="date" readonly="readonly">
         </div>
         <div v-if="showDatePicker">
-            <DatePicker @cancle="cancle" @sure="sure" :selecteddate="olddate"></DatePicker>
+            <datepicker @cancle="cancle" @sure="sure" :selecteddate="olddate"></datepicker>
         </div>
     </div>
 </template>
 
 <script>
-import DatePicker from './components/DatePicker.vue'
+    import datepicker from './components/datepicker'
+    import Vue from 'vue'
+
+    Vue.use(datepicker);
 export default {
     name: 'app',
     data () {
@@ -36,9 +39,6 @@ export default {
         formatDate (date) {
             return date.getFullYear()+"-"+parseInt(date.getMonth()+1)+"-"+date.getDate();
         }
-    },
-    components:{
-        DatePicker
     }
 }
 </script>
